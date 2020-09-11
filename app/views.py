@@ -11,7 +11,7 @@ def index():
 
     message = 'Hello World'
     return render_template('index.html',message = message)
-@app.route('/article/<id>')
+@app.route('/article/<int:id>')
 def movie(article_id):
 
     '''
