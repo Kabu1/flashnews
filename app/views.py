@@ -11,4 +11,13 @@ def index():
 
     message = 'Hello World'
     return render_template('index.html',message = message)
+@app.route('/article/<id>')
+def movie(article_id):
+
+    '''
+    View article page function that returns the movie details page and its data
+    '''
+    return render_template('article.html',articles = articles, id=id)
+
+
 
