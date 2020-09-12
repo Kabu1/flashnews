@@ -9,7 +9,7 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-    title = 'Hello - Welcome to Flash News'
+    title = 'Welcome to Flash News'
     return render_template('index.html',title = title)
 @app.route('/article/<int:id>')
 def movie(article_id):
@@ -17,7 +17,7 @@ def movie(article_id):
     '''
     View article page function that returns the movie details page and its data
     '''
-    return render_template('article.html',articles = articles, id=id)
+    return render_template('article.html',title = title)
 
 
 
