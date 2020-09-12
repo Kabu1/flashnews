@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-
+from .request import get_article
 # Views
 @app.route('/')
 def index():
@@ -9,15 +9,17 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-    title = 'Welcome to Flash News'
-    return render_template('index.html',title = title)
+    source = get_source()
+    headlines = get_headlines()
+    return render_template('index.html',sources =source, headlines = headlines)
 @app.route('/article/<int:id>')
-def movie(article_id):
+def article(article_id):
 
     '''
-    View article page function that returns the movie details page and its data
+    View article page function that returns the article details page and its data
     '''
-    return render_template('article.html',title = title)
+    articles = article_source(id)
+    return render_template('article.html',articles= articles, id =id)
 
 
 
