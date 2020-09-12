@@ -9,6 +9,20 @@
         {% endif %}
     </head>
     <body>
+        <div class="card-column">
+            <div class="card-header">
+              <h4>Browse News Sources</h4>
+            </div>
+            <div class="list-group list-group-flush scrolly">
+              <ul>
+                {% for source in sources %}
+                <a href="/article/{{source.id}}">
+                  <p class="text-capitalize text-muted">{{source.id}}</p>
+                </a>
+                {% endfor %}
+              </ul>
+            </div>
 
+          </div>
     </body>
 </html>

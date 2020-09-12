@@ -1,14 +1,14 @@
 from app import app
 import urllib.request,json
-from .models import article
-Article = article.Article
+from .models import source
+Source = source.Source
 
 
 # Getting api key
 api_key = app.config['NEWS_API_KEY']
 
-# Getting the movie base url
-base_url = app.config["NEWS_API_BASE_URL"]
+# Getting the article base url
+base_url = app.config["NEWS_API_SOURCE_URL"]
 
 
 def get_source():
@@ -16,7 +16,6 @@ def get_source():
     Function that gets the json response to url request
     '''
     get_source_url= source_url.format(api_key)
-    # print(get_source_url)
     with urllib.request.urlopen(get_source_url) as url:
         get_sources_data = url.read()
         get_sources_response = json.loads(get_sources_data)
