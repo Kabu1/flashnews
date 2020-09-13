@@ -12,8 +12,8 @@ def index():
     source = get_source()
     headlines = get_headlines()
     return render_template('index.html',sources =source, headlines = headlines)
-@app.route('/article/<int:id>')
-def article(article_id):
+@app.route('/article/<id>')
+def article(id):
 
     '''
     View article page function that returns the article details page and its data
