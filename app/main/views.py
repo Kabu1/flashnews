@@ -1,28 +1,29 @@
-from flask import render_template
-from app import app
-from .request import get_source,get_headlines, get_category, article_source
-# Views
-@app.route('/')
+from flask import render_template,request,redirect,url_for
+from . import main
+from flask import render_template,request,redirect,url_for
+from ..request import get_source,article_source,get_category,get_headlines
+
+#our views
+@main.route('/')
 def index():
-
     '''
-    View root page function that returns the index page and its data
+    Root function returning index/home page with data
     '''
-
-    source = get_source()
+    source= get_source()
     headlines = get_headlines()
-    return render_template('index.html',sources =source, headlines = headlines)
-@app.route('/article/<id>')
+    return render_template('index.html',sources=source, headlines = headlines)
+
+@main.route('/article/<id>')
 def article(id):
 
     '''
-    View article page function that returns the article details page and its data
+    View article page function that returns the various article details page and its data
     '''
+    # title= 'Articles'
     articles = article_source(id)
-    return render_template('article.html',articles= articles, id =id)
+    return render_template('article.html',articles= articles,id=id )
 
-
-@app.route('/categories/<cat_name>')
+@main.route('/categories/<cat_name>')
 def category(cat_name):
     '''
     function to return the categories.html page and its content
@@ -32,4 +33,3 @@ def category(cat_name):
     cat = cat_name
 
     return render_template('categories.html',title = title,category = category, cat= cat_name)
-
