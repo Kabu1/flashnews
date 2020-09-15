@@ -11,7 +11,7 @@ def index():
 
     source = get_source()
     headlines = get_headlines()
-    return render_template('index.html',source =source, headlines = headlines)
+    return render_template('index.html',sources =source, headlines = headlines)
 @main.route('/article/<id>')
 def article(id):
 
