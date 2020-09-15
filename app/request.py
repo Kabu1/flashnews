@@ -4,14 +4,14 @@ from .models import Article, Category, Source , Headlines
 # Getting api key
 api_key = None
 # Getting source url
-source_url= None
+base_url= None
 # Getting source url
 cat_url= None
 
 def configure_request(app):
-    global api_key, source_url, cat_url
+    global api_key, base_url, cat_url
     api_key = app.config['NEWS_API_KEY']
-    source_url= app.config['NEWS_API_SOURCE_URL']
+    base_url= app.config['NEWS_API_SOURCE_URL']
     cat_url=app.config['CAT_API_URL']
 
 
@@ -19,16 +19,16 @@ def get_source():
     '''
     Function that gets the json response to url request
     '''
-    get_source_url= source_url.format(api_key)
+    get_source_url= base_url.format(api_key)
     # print(get_source_url)
     with urllib.request.urlopen(get_source_url) as url:
-        get_sources_data = url.read()
-        get_sources_response = json.loads(get_sources_data)
+        get_source_data = url.read()
+        get_source_response = json.loads(get_source_data)
 
         source_results = None
 
-        if get_sources_response['sources']:
-            source_results_list = get_sources_response['sources']
+        if get_source_response['sources']:
+            source_results_list = get_source_response['sources']
             source_results = process_results(source_results_list)
 
     return source_results
